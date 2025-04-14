@@ -38,7 +38,7 @@ function setupTwilioDevice(token) {
 
 function fetchToken() {
   console.log('Fetching token...');
-  fetch('/dialpad/token')
+  fetch('/dialer/token')
     .then(response => response.json())
     .then(data => {
       console.log('Token received:', data.token);

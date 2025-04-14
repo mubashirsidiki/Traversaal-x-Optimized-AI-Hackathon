@@ -22,7 +22,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Endpoint to generate a Twilio Access Token
-app.get('/dialpad/token', (req, res) => {
+app.get('/dialer/token', (req, res) => {
   console.log('GET /dialpad/token requested');
   try {
     const voiceGrant = new VoiceGrant({
@@ -46,7 +46,7 @@ app.get('/dialpad/token', (req, res) => {
 });
 
 // Outbound voice endpoint for Twilio Client calls with valid callerId
-app.post('/dialpad/voice-outbound', (req, res) => {
+app.post('/dialer/voice-outbound', (req, res) => {
   console.log('POST /dialpad/voice-outbound requested with body:', req.body);
   
   // Retrieve the target number from the POST body; use default if not provided
