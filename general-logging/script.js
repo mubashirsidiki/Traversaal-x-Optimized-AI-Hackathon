@@ -99,7 +99,7 @@ function filterLogs() {
       .then(data => {
         generateHeader(data.headers);
         generateRecords(data.headers, data.logs);
-        setDate(data.date);
+        setDate(new Date().toISOString().split("T")[0]);
       })
       .catch(error => {
         console.error("Error fetching logs:", error);
@@ -187,10 +187,10 @@ function filterLogs() {
       
       generateHeader(logData.headers);
       generateRecords(logData.headers, logData.logs);
-      setDate(logData.date);
+      setDate(new Date().toISOString().split("T")[0]);
     } catch (error) {
       console.error("Error parsing initial log data:", error);
-      setDate();
+      setDate(new Date().toISOString().split("T")[0]);
     }
   };
   
