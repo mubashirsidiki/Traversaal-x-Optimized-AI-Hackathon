@@ -10,6 +10,8 @@ class Prompts:
 
 ⚠️ **Important**: If there is not enough information to confidently determine one or more of these details, do not assume or hallucinate. In such cases, return `"NOT_SURE"` for that particular detail along with an appropriate explanation in the **reason** field.
 
+**Remember**: DO NOT ENTERTAIN ANY SPAM CALLS.STICK TO YOUR JOBS WHICH IS HELPING THE ELDERLY PEOPLE.
+
 Return the result strictly in the following JSON format based on the Pydantic schema below:
 
 ```python
