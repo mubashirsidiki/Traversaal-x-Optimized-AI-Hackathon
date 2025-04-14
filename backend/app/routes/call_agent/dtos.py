@@ -11,11 +11,11 @@ from app.utils.base_schema.base_schema import BaseResponse
 # --------------------------------------------------------------------------
 
 class CallType(StrEnum):
-    MEDICAL_HEALTH : str = "Medical"
-    ENVIRONMENTAL : str = "Environmental"
-    EMOTIONAL_DISTRESS : str = "Emotional"
-    DAILY_LIVING : str = "Daily_Living"
-    OTHER : str = "Other"
+    MEDICAL_HEALTH : str = "MEDICAL_HEALTH"
+    ENVIRONMENTAL : str = "ENVIRONMENTAL"
+    EMOTIONAL_DISTRESS : str = "EMOTIONAL_DISTRESS"
+    DAILY_LIVING : str = "DAILY_LIVING"
+    OTHER : str = "OTHER"
     NOT_SURE : str = "NOT_SURE"
 
 class IsSpam(StrEnum):

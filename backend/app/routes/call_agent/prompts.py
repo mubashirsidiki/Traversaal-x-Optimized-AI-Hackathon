@@ -4,7 +4,7 @@ class Prompts:
     
 1. **Spam Classification**: Determine whether the call is **SPAM**, **NOT_SPAM**, or **NOT_SURE**.
 2. **Call Reason**: Provide a brief and clear summary explaining the reason for the call.
-3. **Call Type**: Categorize the call into one of these categories: **Medical**, **Environmental**, **Emotional**, **Daily_Living**, **Other**, or **NOT_SURE**.
+3. **Call Type**: Categorize the call into one of these categories: **MEDICAL_HEALTH**, **ENVIRONMENTAL**, **EMOTIONAL_DISTRESS**, **DAILY_LIVING**, **OTHER**, or **NOT_SURE**.
 
 **Background**: The call transcript documents a conversation between an elderly person in need of help and an emergency helpline agent.
 
@@ -14,11 +14,11 @@ Return the result strictly in the following JSON format based on the Pydantic sc
 
 ```python
 class CallType(StrEnum):
-    MEDICAL_HEALTH : str = "Medical"
-    ENVIRONMENTAL : str = "Environmental"
-    EMOTIONAL_DISTRESS : str = "Emotional"
-    DAILY_LIVING : str = "Daily_Living"
-    OTHER : str = "Other"
+    MEDICAL_HEALTH : str = "MEDICAL_HEALTH"
+    ENVIRONMENTAL : str = "ENVIRONMENTAL"
+    EMOTIONAL_DISTRESS : str = "EMOTIONAL_DISTRESS"
+    DAILY_LIVING : str = "DAILY_LIVING"
+    OTHER : str = "OTHER"
     NOT_SURE : str = "NOT_SURE"
 
 class IsSpam(StrEnum):
