@@ -19,7 +19,7 @@ from .helper import (
 )
 from app.utils.logging.logger import LOG
 
-dashboard_router = APIRouter(prefix="/api", tags=["dashboard"])
+dashboard_router = APIRouter(prefix="/api", tags=["Dashboard Analytics Endpoints"])
 
 # Maximum time to wait for database operations
 DB_OPERATION_TIMEOUT = 15  # seconds

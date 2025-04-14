@@ -1,7 +1,7 @@
 // API configuration
-const BASE_URL = "http://localhost:8000"
-const API_PREFIX = "/ai/api"
-const API_TIMEOUT = 90000 // 90 seconds timeout for all API calls
+const BASE_URL = process.env.BASE_URL || "http://localhost:8000"
+const API_PREFIX = process.env.API_PREFIX || "/ai/api"
+const API_TIMEOUT = +process.env.API_TIMEOUT! || 90000 // 90 seconds timeout for all API calls
 
 // Flag to use fallback data instead of trying to call the API
 const USE_FALLBACK_DATA = false

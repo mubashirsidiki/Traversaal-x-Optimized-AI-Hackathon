@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "telephonic-ai"
+name = "silverline"
 version = "1.0.0"
 description = "Base file structure of fast api"
 authors = ["Mubashir Ahmed Siddiqui <63141196+mubashir-ahmed@users.noreply.github.com>"]
@@ -20,6 +20,19 @@ openai = "^1.59.5"
 soundfile = "^0.13.0"
 pydub = "^0.25.1"
 twilio = "^9.5.0"
+youtube-transcript-api = "^1.0.3"
+duckduckgo-search = "^8.0.0"
+requests = "^2.32.3"
+python-pptx = "^1.0.2"
+pydantic = "^2.11.3"
+python-dotenv = "^1.1.0"
+pandas = "^2.2.3"
+numpy = "^2.2.4"
+matplotlib = "^3.10.1"
+seaborn = "^0.13.2"
+openpyxl = "^3.1.5"
+pyarrow = "^19.0.1"
+scikit-learn = "^1.6.1"
 
 
 [tool.poetry.group.db.dependencies]

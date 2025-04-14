@@ -10,7 +10,7 @@ const AccessToken = twilio.jwt.AccessToken;
 const VoiceGrant = AccessToken.VoiceGrant;
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3001;
 
 // Use morgan to log incoming requests
 app.use(morgan('dev'));
@@ -22,8 +22,8 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, '../public')));
 
 // Endpoint to generate a Twilio Access Token
-app.get('/token', (req, res) => {
-  console.log('GET /token requested');
+app.get('/dialpad/token', (req, res) => {
+  console.log('GET /dialpad/token requested');
   try {
     const voiceGrant = new VoiceGrant({
       outgoingApplicationSid: process.env.TWILIO_TWIML_APP_SID,
@@ -46,8 +46,8 @@ app.get('/token', (req, res) => {
 });
 
 // Outbound voice endpoint for Twilio Client calls with valid callerId
-app.post('/voice-outbound', (req, res) => {
-  console.log('POST /voice-outbound requested with body:', req.body);
+app.post('/dialpad/voice-outbound', (req, res) => {
+  console.log('POST /dialpad/voice-outbound requested with body:', req.body);
   
   // Retrieve the target number from the POST body; use default if not provided
   const targetNumber = req.body.number || '+19472822980';
