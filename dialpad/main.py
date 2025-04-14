@@ -32,19 +32,26 @@ async def root():
 # Mount static files (CSS, JS, images) on /static
 app.mount("/static", StaticFiles(directory="public"), name="static")
 
-@app.get("/token")
+@app.get("/dialer/token")
 async def get_token():
-    logger.info("GET /token requested")
+    logger.info("GET /dialer/token requested")
     try:
+        # Log environment variables for debugging (mask secrets in production)
+        logger.info(f"Using TWILIO_ACCOUNT_SID: {TWILIO_ACCOUNT_SID[:6]}...{TWILIO_ACCOUNT_SID[-4:]}")
+        logger.info(f"Using TWILIO_TWIML_APP_SID: {TWILIO_TWIML_APP_SID}")
+        
         # Create a Voice grant for the outgoing call (Twilio Client)
         voice_grant = VoiceGrant(outgoing_application_sid=TWILIO_TWIML_APP_SID)
 
         # Generate a token with a random identity
+        identity = "user_" + os.urandom(4).hex()
+        logger.info(f"Generating token for identity: {identity}")
+        
         token = AccessToken(
             TWILIO_ACCOUNT_SID,
             TWILIO_API_KEY,
             TWILIO_API_SECRET,
-            identity="user_" + os.urandom(4).hex()
+            identity=identity
         )
         token.add_grant(voice_grant)
 
@@ -56,14 +63,25 @@ async def get_token():
         logger.info("Token generated successfully")
         return JSONResponse(content={"token": jwt_token})
     except Exception as e:
-        logger.error("Error generating token: %s", e)
+        logger.error("Error generating token: %s", e, exc_info=True)
         return JSONResponse(status_code=500, content={"error": str(e)})
 
-@app.post("/voice-outbound")
+@app.get("/dialer/debug")
+async def debug_config(request: Request):
+    """Debug endpoint to verify configuration"""
+    return JSONResponse(content={
+        "account_sid_prefix": TWILIO_ACCOUNT_SID[:6] if TWILIO_ACCOUNT_SID else "Not set",
+        "api_key_prefix": TWILIO_API_KEY[:6] if TWILIO_API_KEY else "Not set",
+        "twiml_app_sid": TWILIO_TWIML_APP_SID or "Not set",
+        "caller_id": VALID_CALLER_ID or "Not set",
+        "base_url": str(request.base_url)
+    })
+
+@app.post("/dialer/voice-outbound")
 async def voice_outbound(request: Request):
     # Parse incoming form data (Twilio sends POST as form data)
     form_data = await request.form()
-    logger.info("POST /voice-outbound requested with body: %s", form_data)
+    logger.info("POST /dialer/voice-outbound requested with body: %s", form_data)
     
     # Retrieve the target number from the form data; default if not provided
     target_number = form_data.get("number", "+19472822980")
