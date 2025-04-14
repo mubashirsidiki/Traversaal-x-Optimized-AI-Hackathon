@@ -14,9 +14,9 @@ class CallType(StrEnum):
     MEDICAL_HEALTH : str = "Medical"
     ENVIRONMENTAL : str = "Environmental"
     EMOTIONAL_DISTRESS : str = "Emotional"
-    DAILY_LIVING : str = "Daily Living"
+    DAILY_LIVING : str = "Daily_Living"
     OTHER : str = "Other"
-    NOT_SURE : str = "Not Sure"
+    NOT_SURE : str = "Not_Sure"
 
 class IsSpam(StrEnum):
     SPAM : str = "SPAM"
