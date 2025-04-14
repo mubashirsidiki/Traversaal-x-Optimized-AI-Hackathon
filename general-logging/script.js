@@ -56,12 +56,12 @@ function filterLogs() {
   
   // Main function to fetch logs.
   function fetchLogs() {
-    const selectedDate = document.getElementById("logDate").value;
+    let selectedDate = document.getElementById("logDate").value;
     const selectedCategory = document.getElementById("logCategory").value;
     
     if (!selectedDate) {
-      alert("Please select a date.");
-      return;
+      // Use current Pakistan date
+      selectedDate = setDate();
     }
     
     // Convert date from "YYYY-MM-DD" to "YYYYMMDD"
@@ -99,7 +99,7 @@ function filterLogs() {
       .then(data => {
         generateHeader(data.headers);
         generateRecords(data.headers, data.logs);
-        setDate(new Date().toISOString().split("T")[0]);
+        setDate();
       })
       .catch(error => {
         console.error("Error fetching logs:", error);
@@ -170,27 +170,77 @@ function filterLogs() {
     });
   }
   
-  function setDate(date) {
-    if (!date) {
-      const today = new Date();
-      date = today.toISOString().split("T")[0];
-    }
+  function setDate() {
+    // Get the date in Pakistan Standard Time (GMT+5)
+    const now = new Date();
+    // Create date formatter for Pakistan time
+    const options = { 
+      timeZone: 'Asia/Karachi',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit'
+    };
+    
+    // Format the date in YYYY-MM-DD format for Pakistan timezone
+    const formatter = new Intl.DateTimeFormat('en-CA', options); // en-CA gives YYYY-MM-DD format
+    const pkDate = formatter.format(now);
+    
+    // Set the date display and input value
     const h1 = document.getElementById("log-heading");
-    h1.innerHTML = `Logs for ${date}`;
-    document.getElementById("logDate").value = date;
+    h1.innerHTML = `Logs for ${pkDate}`;
+    document.getElementById("logDate").value = pkDate;
+    
+    console.log("Current date in Pakistan:", pkDate);
+    return pkDate;
   }
   
   window.onload = function () {
     try {
-      const logDataElement = document.getElementById("logData").textContent;
+      // Force using the current date and get Pakistan time
+      const today = setDate();
+      
+      // Start real-time Pakistan clock
+      updateRealTimeClock();
+      
+      // Get and parse the test log data
+      let logDataElement = document.getElementById("logData").textContent;
+      // Replace the placeholder with actual Pakistan date
+      logDataElement = logDataElement.replace('"date": "CURRENT_DATE"', `"date": "${today}"`);
+      
       const logData = JSON.parse(logDataElement);
       
       generateHeader(logData.headers);
       generateRecords(logData.headers, logData.logs);
-      setDate(new Date().toISOString().split("T")[0]);
     } catch (error) {
       console.error("Error parsing initial log data:", error);
-      setDate(new Date().toISOString().split("T")[0]);
+      setDate();
     }
   };
+  
+  // Helper function to get Pakistan current date and time
+  function getPakistanDateTime() {
+    const now = new Date();
+    const options = { 
+      timeZone: 'Asia/Karachi',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+      hour12: true
+    };
+    
+    return new Intl.DateTimeFormat('en-US', options).format(now);
+  }
+
+  // Update UI with real-time Pakistan time
+  function updateRealTimeClock() {
+    const timeElement = document.getElementById("pakistan-time");
+    if (timeElement) {
+      timeElement.textContent = getPakistanDateTime();
+    }
+    // Update every second
+    setTimeout(updateRealTimeClock, 1000);
+  }
   
