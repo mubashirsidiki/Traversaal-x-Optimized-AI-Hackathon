@@ -16,7 +16,7 @@ class CallType(StrEnum):
     EMOTIONAL_DISTRESS : str = "Emotional"
     DAILY_LIVING : str = "Daily_Living"
     OTHER : str = "Other"
-    NOT_SURE : str = "Not_Sure"
+    NOT_SURE : str = "NOT_SURE"
 
 class IsSpam(StrEnum):
     SPAM : str = "SPAM"
