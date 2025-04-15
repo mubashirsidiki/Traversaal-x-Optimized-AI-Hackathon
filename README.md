@@ -213,7 +213,7 @@ poetry run python main.py
 cd ../frontend
 npm install
 npm run build
-npm run dev
+npm run serve
 ```
 
 #### 3. **Dialpad**
