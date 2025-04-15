@@ -148,13 +148,13 @@ TRAVERSAAL_ARES_API_KEY=
 
 ```
 # API Configuration
-API_PREFIX=/ai/api
-API_TIMEOUT=90000
+NEXT_PUBLIC_API_PREFIX=/ai/api
+NEXT_PUBLIC_API_TIMEOUT=90000
 
 # URLs
-BASE_URL=http://localhost:8000
-DIALPAD_URL=http://localhost:3001/dialer
-LOG_VIEWER_URL=http://localhost:3002/gen-log
+NEXT_PUBLIC_BASE_URL=http://localhost:8000
+NEXT_PUBLIC_DIALPAD_URL=http://localhost:3001/dialer
+NEXT_PUBLIC_LOG_VIEWER_URL=http://localhost:3002/gen-log
 ```
 
 #### 📂 In `/dialpad/.env`
