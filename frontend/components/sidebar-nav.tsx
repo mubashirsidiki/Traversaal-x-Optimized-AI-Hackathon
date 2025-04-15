@@ -10,8 +10,10 @@ export function SidebarNav() {
   const [collapsed, setCollapsed] = useState(false)
   
   // Access environment variables
-  const dialpadUrl = process.env.DIALPAD_URL || "http://localhost:3001/dialer"
-  const logViewerUrl = process.env.LOG_VIEWER_URL || "http://localhost:3002/gen-log"
+  console.log("NEXT_PUBLIC_DIALPAD_URL", process.env.NEXT_PUBLIC_DIALPAD_URL)
+  console.log("NEXT_PUBLIC_LOG_VIEWER_URL", process.env.NEXT_PUBLIC_LOG_VIEWER_URL)
+  const dialpadUrl = process.env.NEXT_PUBLIC_DIALPAD_URL || "http://localhost:3001/dialer"
+  const logViewerUrl = process.env.NEXT_PUBLIC_LOG_VIEWER_URL || "http://localhost:3002/gen-log"
 
   return (
     <div
