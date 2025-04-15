@@ -27,6 +27,12 @@ Silverline makes **accessing support as simple as dialing a number**—no intern
 
 ---
 
+## 〰 Agentic Architecture Diagram
+
+![diagram](https://github.com/user-attachments/assets/a6ef294e-b821-4858-8c40-5b38f939e10e)
+
+---
+
 ## 🗣️ What Makes Silverline Special?
 
 ### 🎙️ Real-Time Voice AI (Powered by OpenAI)
