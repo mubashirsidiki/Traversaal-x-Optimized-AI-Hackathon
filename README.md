@@ -4,18 +4,15 @@
 
 **Silverline** is an AI-powered voice-to-voice assistant designed to help elderly individuals in moments of need—whether emotional, medical, environmental, or related to daily living.
 
-> 📞 **Call Now**: +1 (947) 282-2980  
-> 🧪 **Try the Web Dial Pad**: [silverline-13-51-250-75.nip.io/dialer](https://silverline-13-51-250-75.nip.io/dialer/)  
-> 📊 **Call Analytics Dashboard**: [silverline-13-51-250-75.nip.io](https://silverline-13-51-250-75.nip.io)  
-> 🛠️ **View Backend Logs**: [silverline-13-51-250-75.nip.io/gen-log](https://silverline-13-51-250-75.nip.io/gen-log/)
+> 📞 **Call Now**: +1 (947) 282-2980
+
+> 🧪 **Try the Live Link**: [silverline-13-51-250-75.nip.io](https://silverline-13-51-250-75.nip.io)  
 
 ---
 
 ## 💡 The Problem
 
-In regions like **Pakistan**, many elderly individuals—and even younger people in remote areas—lack access to or understanding of modern technology.
-
-In emergencies, app-based solutions and online tools are often out of reach. Emergency services can be unreliable or delayed. For these communities, a **simple phone call** can mean the difference between help and helplessness.
+In regions like **Pakistan**, many elderly individuals—and even younger people in remote areas—lack access to or understanding of modern technology. In emergencies, app-based solutions and online tools are often out of reach. Emergency services can be unreliable or delayed. For these communities, a **simple phone call** can mean the difference between help and helplessness.
 
 ---
 
@@ -37,7 +34,7 @@ Silverline makes **accessing support as simple as dialing a number**—no intern
 - Uses **OpenAI’s real-time API** for natural, two-way voice conversations.
 - Preserves **tone, sentiment, and emotional nuance**—no loss through text conversion.
 - Responds in a **soothing and empathetic voice** with 7 voice options (male and female).
-- Designed specifically for **elderly comfort and simplicity**.
+- Built from scratch using **custom WebSocket handling**—**no external wrappers like Vapi used**.
 
 ---
 
@@ -56,15 +53,15 @@ By using AgentPro’s tool-calling capabilities, Silverline **overcomes model kn
 
 ## 📊 Dashboard & Call Analytics
 
-🔗 **Access Dashboard**: [silverline-13-51-250-75.nip.io](https://silverline-13-51-250-75.nip.io)
+🔗 **Access Dashboard**: [silverline-13-51-250-75.nip.io/dashboard](https://silverline-13-51-250-75.nip.io/dashboard)
 
 Track all interactions in real time:
 
 | Caller Number | Twilio Number | Type | Duration | Time | Spam Status | Reason |
-|---------------|----------------|------|----------|------|--------------|--------|
+|---------------|---------------|------|----------|------|-------------|--------|
 
-- Detects **spam calls**.
-- Categorizes each interaction by **type**.
+- Detects and blocks **spam calls**.
+- Categorizes each interaction by **type** and **intent**.
 
 ---
 
@@ -72,16 +69,18 @@ Track all interactions in real time:
 
 🔗 **View Logs**: [silverline-13-51-250-75.nip.io/gen-log](https://silverline-13-51-250-75.nip.io/gen-log)
 
-Why are we showing logs?  
+**Why are we showing logs?**  
 Because everything powering Silverline is **custom-engineered**—especially the voice interface. Unlike plug-and-play wrappers (like Vapi), **Silverline handles OpenAI's real-time streaming API directly via WebSockets**.
 
-These logs showcase:
-- Event-driven handling of user voice
-- WebSocket message orchestration
-- Prompting, streaming, and edge-case recovery
-- Asynchronous performance with robust logging
+The log viewer is designed to show **only AI Backend logs**, with the drop-down default set to "AI Backend" because the entire logic of real-time communication is handled there. Although other backend options are available as drop-down choices, they are not active, as the focus is demonstrating the AI handling of events.
 
-It's a demonstration of what's possible when you go **beyond wrappers** and build deeply integrated voice intelligence.
+These logs showcase:
+- Event-driven handling of user voice input
+- Orchestration of WebSocket messages
+- Prompting, streaming, and robust edge-case recovery
+- Asynchronous performance with detailed logging
+
+It’s a demonstration of the benefits of building a deeply integrated voice intelligence system from the ground up.
 
 ---
 
@@ -106,7 +105,143 @@ No smartphone? No problem. Even basic feature phones work.
 - **Frontend**: Next.js
 - **Backend**: FastAPI (Async)
 - **Logging**: Custom real-time log capture
-- **Infra**: AWS + Docker + Nginx
+- **Infrastructure**: Docker + Nginx + Async Workers
+
+---
+
+## 🧪 Run It Locally
+
+### 🔻 Clone the Repository
+
+```bash
+git clone https://github.com/mubashirsidiki/Traversaal-x-Optimized-AI-Hackathon.git
+cd Traversaal-x-Optimized-AI-Hackathon
+```
+
+---
+
+### 🛠️ Set Up Environment Variables
+
+#### 📂 In `/backend/.env`
+
+```
+# OpenAI API Key:
+OPENAI_API_KEY=
+
+# OpenAI Realtime Model:
+OPENAI_REALTIME_MODEL=
+
+# Backend URL:
+backend_url=
+
+# Classifier Model:
+CLASSIFIER_MODEL=
+
+# MongoDB Connection:
+DATABASE_URL=
+
+# Traversaal Ares API Key:
+TRAVERSAAL_ARES_API_KEY=
+```
+
+#### 📂 In `/frontend/.env`
+
+```
+# API Configuration
+API_PREFIX=/ai/api
+API_TIMEOUT=90000
+
+# URLs
+BASE_URL=http://localhost:8000
+DIALPAD_URL=http://localhost:3001/dialer
+LOG_VIEWER_URL=http://localhost:3002/gen-log
+```
+
+#### 📂 In `/dialpad/.env`
+
+```
+# Twilio Configuration
+TWILIO_ACCOUNT_SID=
+TWILIO_AUTH_TOKEN=
+VALID_CALLER_ID=
+TWILIO_API_KEY=
+TWILIO_API_SECRET=
+TWILIO_TWIML_APP_SID=
+
+# Server Configuration
+PORT=3001
+```
+
+#### 📂 In `/general-logging/.env`
+
+```
+# API Endpoints
+AI_BACKEND_API=http://localhost:8000/ai/server/send-logs
+BACKEND_API=
+FRONTEND_API=
+```
+
+---
+
+### 🐳 Run with Docker (Recommended)
+
+```bash
+docker-compose up --build -d
+```
+
+To stop:
+
+```bash
+docker-compose down
+```
+
+---
+
+### 🧰 Run Without Docker
+
+#### 1. **Backend**
+
+```bash
+cd backend
+poetry install
+poetry run python main.py
+```
+
+#### 2. **Frontend**
+
+```bash
+cd ../frontend
+npm install
+npm run build
+npm run dev
+```
+
+#### 3. **Dialpad**
+
+```bash
+cd ../dialpad
+npm install
+node server/server.js
+```
+
+#### 4. **General Logging**
+
+```bash
+cd ../general-logging
+npm install
+node server.js
+```
+
+---
+
+## 🌐 Local Access URLs
+
+After successful configuration and running the project locally, you can access:
+
+- **Frontend** at: [http://localhost:3000](http://localhost:3000)
+- **Backend** at: [http://localhost:8000](http://localhost:8000)
+- **Dialer** at: [http://localhost:3001](http://localhost:3001)
+- **Log Viewer** at: [http://localhost:3002](http://localhost:3002)
 
 ---
 
