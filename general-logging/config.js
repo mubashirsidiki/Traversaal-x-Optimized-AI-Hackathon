@@ -1,26 +1,18 @@
 // config.js - Centralized configuration with environment variable support
 
+const path = location.pathname
+
 // Function to fetch and parse the .env file
 async function loadEnvVariables() {
   try {
-    const response = await fetch('.env');
+    // Use the correct path to the .env file - resolving path issues
+    const response = await fetch(`${path}env`);
     if (!response.ok) {
       throw new Error('Could not load .env file');
     }
-    const envText = await response.text();
+    const envVars = await response.json();
     
-    // Parse the .env file content
-    const envVars = {};
-    envText.split('\n').forEach(line => {
-      const line_trimmed = line.trim();
-      if (line_trimmed && !line_trimmed.startsWith('#')) {
-        const [key, value] = line_trimmed.split('=');
-        if (key && value) {
-          envVars[key.trim()] = value.trim();
-        }
-      }
-    });
-    
+    console.log("envVars", envVars)
     return envVars;
   } catch (error) {
     console.error('Error loading environment variables:', error);

@@ -2,6 +2,7 @@
 const express = require('express');
 const path = require('path');
 const morgan = require('morgan');
+require('dotenv').config();
 
 const app = express();
 const port = process.env.PORT || 3002;
@@ -17,6 +18,16 @@ app.use('/gen-log', express.static(path.join(__dirname)));
 //   res.redirect('/gen-log');
 // });
 
+app.get('/gen-log/env', (req, res) => {
+  const environment = {
+    AI_BACKEND_API: process.env.AI_BACKEND_API,
+    BACKEND_API: process.env.BACKEND_API,
+    FRONTEND_API: process.env.FRONTEND_API
+  }
+  res.json(environment);
+});
+
 app.listen(port, () => {
   console.log(`General Logging server is running on http://localhost:${port}/gen-log`);
 }); 
+
