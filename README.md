@@ -1,4 +1,4 @@
-![silverline-logo-3](https://github.com/user-attachments/assets/1587964f-64ab-4143-a5d4-0a03913f6558)
+![P2QZhx_0CeuX17ot_ktRChd](https://github.com/user-attachments/assets/b67ad0af-6603-4af2-9353-f0018de82ef1)
 
 # 🧓 Silverline – A Voice of Hope for the Elderly
 
