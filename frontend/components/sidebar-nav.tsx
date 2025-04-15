@@ -1,13 +1,17 @@
 "use client"
 
 import { useState } from "react"
-import { ChevronLeft, ChevronRight, Home } from "lucide-react"
+import { ChevronLeft, ChevronRight, Home, Phone, FileText } from "lucide-react"
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
 
 export function SidebarNav() {
   const [collapsed, setCollapsed] = useState(false)
+  
+  // Access environment variables
+  const dialpadUrl = process.env.DIALPAD_URL || "http://localhost:3001/dialer"
+  const logViewerUrl = process.env.LOG_VIEWER_URL || "http://localhost:3002/gen-log"
 
   return (
     <div
@@ -36,6 +40,30 @@ export function SidebarNav() {
             <Link href="/dashboard">
               <Home className="h-4 w-4" />
               {!collapsed && <span>Dashboard</span>}
+            </Link>
+          </Button>
+          
+          <Button
+            variant="ghost"
+            size="sm"
+            className={cn("justify-start gap-2 mb-1", collapsed && "justify-center px-0")}
+            asChild
+          >
+            <Link href="http://localhost:3001/dialer" target="_blank" rel="noopener noreferrer">
+              <Phone className="h-4 w-4" />
+              {!collapsed && <span>Dialer</span>}
+            </Link>
+          </Button>
+          
+          <Button
+            variant="ghost"
+            size="sm"
+            className={cn("justify-start gap-2 mb-1", collapsed && "justify-center px-0")}
+            asChild
+          >
+            <Link href="http://localhost:3002/gen-log" target="_blank" rel="noopener noreferrer">
+              <FileText className="h-4 w-4" />
+              {!collapsed && <span>Log Viewer</span>}
             </Link>
           </Button>
         </nav>
