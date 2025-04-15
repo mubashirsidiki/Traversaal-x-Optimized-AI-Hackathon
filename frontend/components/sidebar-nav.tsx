@@ -51,7 +51,7 @@ export function SidebarNav() {
             className={cn("justify-start gap-2 mb-1", collapsed && "justify-center px-0")}
             asChild
           >
-            <Link href="http://localhost:3001/dialer" target="_blank" rel="noopener noreferrer">
+            <Link href={dialpadUrl} target="_blank" rel="noopener noreferrer">
               <Phone className="h-4 w-4" />
               {!collapsed && <span>Dialer</span>}
             </Link>
@@ -63,7 +63,7 @@ export function SidebarNav() {
             className={cn("justify-start gap-2 mb-1", collapsed && "justify-center px-0")}
             asChild
           >
-            <Link href="http://localhost:3002/gen-log" target="_blank" rel="noopener noreferrer">
+            <Link href={logViewerUrl} target="_blank" rel="noopener noreferrer">
               <FileText className="h-4 w-4" />
               {!collapsed && <span>Log Viewer</span>}
             </Link>
