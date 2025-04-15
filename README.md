@@ -51,6 +51,21 @@ By using AgentPro’s tool-calling capabilities, Silverline **overcomes model kn
 
 ---
 
+## 📞 Additional Call Handling Features
+
+- **Spam Prevention:**  
+  Silverline employs robust spam call detection mechanisms to ensure that the system does not entertain unsolicited or harmful spam calls.
+  
+- **Automatic Query Detection:**  
+  The system automatically detects if a caller's query requires an external internet search. When needed, it seamlessly invokes AgentPro to retrieve relevant, up-to-date data.
+
+- **Call Classification:**  
+  Silverline classifies calls based on conversational context. This classification supports tailored responses and efficient routing of requests, ensuring that each call is handled appropriately, whether it's a general inquiry, emergency, or alarm-triggered situation.
+
+---
+
+---
+
 ## 📊 Dashboard & Call Analytics
 
 🔗 **Access Dashboard**: [silverline-13-51-250-75.nip.io/dashboard](https://silverline-13-51-250-75.nip.io/dashboard)
