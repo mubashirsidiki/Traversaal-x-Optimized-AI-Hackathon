@@ -212,32 +212,11 @@ async def agentpro_call(user_query):
         LOG.error(f"Error: {e}")
 
 async def internet_search_func(openai_ws: ClientConnection, lang: str, user_query: str, call_id: str) -> None:
-    # """Execute internet search and forward results to OpenAI."""
-    # language_line = f"\nYour communication language will be: {lang} no matter what the language user speaks."
-
-    # instructions = """
-    #             Respond with: 'let me check the internet for you'
-    #         """
-
-    # instructions_with_lang_line = instructions + "\n" + language_line
-
-    
-    # payload = {
-    #     "type": "response.create",
-    #     "response": {
-    #         "instructions": instructions_with_lang_line,
-    #     }
-    # }
-    # LOG.info("Sending initial instructions to OpenAI so that it can reply to user")
-    # await openai_ws.send(json.dumps(payload))
-
-    # await asyncio.sleep(3)
-
     # Call the internet search tool
     LOG.info("--------------------------------")
     LOG.info("Calling AgentPro")
-    user_query += f"\nuse the internet search tool to find the answer to this question your response language should be {lang}"
-    agent_response = await agentpro_call(user_query)
+    construct_user_query += f"\nuse the internet search tool to find the answer to this question your response language should be {lang}. The user query is: {user_query}"
+    agent_response = await agentpro_call(construct_user_query)
     LOG.info(f"AgentPro Final Response ---> {agent_response}")
     LOG.info("--------------------------------")
 
