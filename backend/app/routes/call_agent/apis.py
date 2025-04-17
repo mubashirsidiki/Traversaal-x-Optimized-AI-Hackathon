@@ -400,40 +400,16 @@ async def openai_websocket_session(
                         response.get("type") == "response.function_call_arguments.done"
                         and response.get("name") == "internet_search"
                     ):
-                        # LOG.info("Response from OpenAI:" )
-                        # LOG.info(response)
+                        # Log the detection of the internet search tool/function call
                         LOG.info("Internet search tool/function call detected")
 
                         # Extract the language from the response
                         lang = response_from_backend.get("language", "en-US")
-
-
-
-                        #############################################################################
-                        # language_line = f"\nYour communication language will be: {lang} no matter what the language user speaks."
-
-                        # instructions = """
-                        #             Respond with: 'let me check the internet for you'
-                        #         """
-
-                        # instructions_with_lang_line = instructions + "\n" + language_line
-
                         
-                        # payload = {
-                        #     "type": "response.create",
-                        #     "response": {
-                        #         "instructions": instructions_with_lang_line,
-                        #     }
-                        # }
-                        # LOG.info("Sending initial instructions to OpenAI so that it can reply to user right after the tool call is detected")
-                        # await openai_ws.send(json.dumps(payload))
-                        #############################################################################
-
-
-
-
+                        # Extract the call ID from the response
                         call_id = response.get("call_id", "No call ID provided")
                         
+                        # Call the internet search tool function
                         LOG.info("Now calling internet search tool funciton")
                         await internet_search_func(openai_ws, lang, user_query, call_id)
                         
