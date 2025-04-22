@@ -2,11 +2,7 @@
 
 # 🧓 Silverline – A Voice of Hope for the Elderly
 
-**Silverline** is an AI-powered voice-to-voice assistant designed to help elderly individuals in moments of need—whether emotional, medical, environmental, or related to daily living.
-
-> 📞 **Call Now**: +1 (947) 282-2980
-
-> 🧪 **Try the Live Link**: [silverline-13-51-250-75.nip.io](https://silverline-13-51-250-75.nip.io)  
+**Silverline** is an AI-powered voice-to-voice assistant designed to help elderly individuals in moments of need—whether emotional, medical, environmental, or related to daily living. 
 
 ---
 
@@ -74,8 +70,6 @@ By using AgentPro’s tool-calling capabilities, Silverline **overcomes model kn
 
 ## 📊 Dashboard & Call Analytics
 
-🔗 **Access Dashboard**: [silverline-13-51-250-75.nip.io/dashboard](https://silverline-13-51-250-75.nip.io/dashboard)
-
 Track all interactions in real time:
 
 | Caller Number | Twilio Number | Type | Duration | Time | Spam Status | Reason |
@@ -87,8 +81,6 @@ Track all interactions in real time:
 ---
 
 ## 🛠️ Backend Logging
-
-🔗 **View Logs**: [silverline-13-51-250-75.nip.io/gen-log](https://silverline-13-51-250-75.nip.io/gen-log)
 
 **Why are we showing logs?**  
 Because everything powering Silverline is **custom-engineered**—especially the voice interface. Unlike plug-and-play wrappers (like Vapi), **Silverline handles OpenAI's real-time streaming API directly via WebSockets**.
@@ -102,19 +94,6 @@ These logs showcase:
 - Asynchronous performance with detailed logging
 
 It’s a demonstration of the benefits of building a deeply integrated voice intelligence system from the ground up.
-
----
-
-## 📞 How to Test It
-
-### 1. **Call Directly**
-Use your phone and dial:  
-📞 +1 (947) 282-2980
-
-### 2. **Use the Web Dial Pad**  
-🧪 [Try It Here](https://silverline-13-51-250-75.nip.io/dialer/)
-
-No smartphone? No problem. Even basic feature phones work.
 
 ---
 
