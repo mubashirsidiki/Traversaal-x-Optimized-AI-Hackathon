@@ -215,8 +215,8 @@ async def internet_search_func(openai_ws: ClientConnection, lang: str, user_quer
     # Call the internet search tool
     LOG.info("--------------------------------")
     LOG.info("Calling AgentPro")
-    construct_user_query += f"\nuse the internet search tool to find the answer to this question your response language should be {lang}. The user query is: {user_query}"
-    agent_response = await agentpro_call(construct_user_query)
+    user_query += f"\nuse the internet search tool to find the answer to this question your response language should be {lang}."
+    agent_response = await agentpro_call(user_query)
     LOG.info(f"AgentPro Final Response ---> {agent_response}")
     LOG.info("--------------------------------")
 
